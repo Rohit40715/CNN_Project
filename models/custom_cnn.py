@@ -10,12 +10,14 @@ class CustomDepthCNN(nn.Module):
         self.encoder = nn.Sequential(
             # Input: RGB image (3 channels). Output: 64 feature maps.
             nn.Conv2d(3, 64, kernel_size=3, padding=1), 
+            nn.BatchNorm2d(64),
             # CONCEPT: Activation (ReLU) - introduces non-linearity so the model can learn complex relationships.
             nn.ReLU(),                                  
             # CONCEPT: Max Pooling - reduces spatial size (downsampling) while keeping important features.
             nn.MaxPool2d(2, 2),                         
             
             nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
             nn.ReLU(),
             nn.MaxPool2d(2, 2)
         )
